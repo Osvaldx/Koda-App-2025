@@ -1,4 +1,4 @@
 # Integrantes
 - ## Nahuel Romano
-- ## Steafania Bianchi
+- ## Stefania Bianchi
 - ## Federico Deniard
