@@ -1,1 +1,9 @@
-<p>login works!</p>
+<p>Login</p>
+<form [formGroup]="loginForm">
+    <div>
+        <app-custom-input [controller]="loginForm.controls.email" type="email" autocomplete="email" placeholder="micorreo@gmail.com"></app-custom-input>
+        <app-custom-input [controller]="loginForm.controls.password" type="password" autocomplete="off" placeholder="contraseña123"></app-custom-input>
+    </div>
+
+    <button class="border border-black p-1" (click)="login()" type="button">Iniciar Sesion</button>
+</form>
