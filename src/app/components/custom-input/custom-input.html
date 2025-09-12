@@ -5,3 +5,9 @@ class="border-b border-gray-400 placeholder:text-gray-400 p-2 w-72 focus:outline
 [autocomplete]="autocomplete"
 [placeholder]="placeholder"
 >
+@if (isPassword) {
+    <button (click)="showOrHidePassword()"> 
+        <span>👀</span>
+    </button>
+}
+
