@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
 
 @Component({
@@ -13,5 +13,26 @@ export class CustomInput {
   @Input() type?: string;
   @Input() autocomplete?: string;
   @Input() placeholder?: string;
+  showPassword: boolean = false
+  isPassword: boolean = false
+
+  ngOnInit() {
+    if (this.type === 'password') {
+      this.isPassword = true
+    }
+  }
+
+  showOrHidePassword(){
+    
+    if (this.isPassword) {
+      if (this.showPassword) {
+        this.showPassword = false
+        this.type = 'password'
+      }else{
+        this.showPassword = true
+        this.type = 'text'
+      }
+    }
+  }
   
 }
