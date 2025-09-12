@@ -1,5 +1,5 @@
 @if (toast.visible) {
-    <div class="text-white text-balance font-bold w-fit flex justify-center items-center p-2 gap-1 fixed top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl rounded-2xl max-sm:text-sm"
+    <div class="text-white z-10 text-balance font-bold w-fit flex justify-center items-center p-2 gap-1 fixed top-20 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-xl rounded-2xl max-sm:text-sm"
     [class.bg-red-500] = 'toast.type === "error"'
     [class.bg-green-500] = 'toast.type === "success"'
     [class.bg-sky-500] = 'toast.type === "info"'
