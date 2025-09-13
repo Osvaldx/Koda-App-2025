@@ -2,7 +2,7 @@
 <main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
     <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
     </div>
-    <form [formGroup]="loginForm" class="relative z-10 flex justify-center items-center flex-col gap-6 p-7 rounded-2xl bg-white shadow-xl">
+    <form [formGroup]="loginForm" class="relative z-10 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
         <div class="text-center">
             <h1 class="text-2xl font-bold text-red-500">Bienvenido</h1>
             <p>Inicia sesion para continuar</p>
@@ -28,12 +28,9 @@
                         </div>
                     }
         </div>
-        
         <button class="bg-red-500 text-white rounded-2xl w-80 p-2" (click)="login()" type="button">Iniciar Sesion</button>
         <a href="" class="text-sm text-gray-500">Olvidaste tu contraseña?</a>
     </form>
-
-    
     <div class="relative z-10 text-center text-gray-700 mt-4">
         <p class="text-sm">¿No tienes cuenta?</p>
         <button 
