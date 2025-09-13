@@ -28,6 +28,8 @@ export class Login {
   public async login() {
     const email = this.loginForm.controls.email.value;
     const password = this.loginForm.controls.password.value;
+    
+    if(email?.trim() === "" || password?.trim() === "") { return this.toastManager.show("error", "Complete todos los campos", 3000) }
 
     const { error } = await this.authService.signIn(email!, password!);
 
