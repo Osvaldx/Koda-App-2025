@@ -62,4 +62,20 @@
 ---
 
 ## Federico Deniard
+### Actualizado — Sep 13, 2025
+
+- 🧭 **Ruteo & Navegación**
+  - **Se arregló la navegación de rutas** — branch `federico/route-fixing` (PR #6), commit `101bd1a`.
+  - `app.routes.ts`: reorganización de rutas:
+    - Redirect `"" → "splash"` (full match).
+    - Grupo `auth/` con **lazy load** para `login` y `register`.
+    - `home` y `splash` pasan a **lazy load**.
+    - Se eliminan rutas duplicadas y se ordena la definición.
+  - `pages/auth/login/login.ts`: unificación de post-login a `this.router.navigateByUrl('home')` (sin `replaceUrl`).
+  - `pages/home/home.ts`: tras sign-out, redirige a **`/auth/login`**.
+  - `pages/splash/splash.ts`: botón de ingreso redirige a **`/auth/login`**.
+
+- 📊 **Diff**
+  - 16 cambios — **8 adiciones** / **8 eliminaciones**.
+
 ---
