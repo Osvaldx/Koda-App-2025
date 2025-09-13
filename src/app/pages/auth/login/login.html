@@ -33,9 +33,13 @@
     </form>
     <div class="relative z-10 text-center text-gray-700 mt-4">
         <p class="text-sm">¿No tienes cuenta?</p>
-        <button 
+        <button (click)="navigateToRegister()"
             class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
                 Regístrate aquí
         </button>
     </div>
+    <button (click)="accessDirect(0)"
+            class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
+                Acceso directo
+        </button>
 </main>
