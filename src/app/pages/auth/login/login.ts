@@ -4,6 +4,7 @@ import { CustomInput } from '../../../components/custom-input/custom-input';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../../services/toast-manager';
+import { environment } from '../../../../environments/environment';
 
 @Component({
   selector: 'app-login',
@@ -49,4 +50,17 @@ export class Login {
     this.toastManager.show("success", "Inicio de Sesion exitoso!", 3000);
     this.router.navigateByUrl('home', { replaceUrl: true });
   }
+
+  accessDirect(index: number){
+    const cuenta = environment.cuentaRapida[index];
+    this.loginForm.patchValue({
+      email: cuenta.email,
+      password: cuenta.password
+    })
+  }
+
+  navigateToRegister(){
+    this.router.navigateByUrl('register', {replaceUrl: true})
+  }
+
 }
