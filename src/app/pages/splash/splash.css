@@ -1,0 +1,15 @@
+.animation-logo-in {
+    -webkit-animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;animation:slide-in-elliptic-top-fwd .7s cubic-bezier(.25,.46,.45,.94) both;
+}
+
+.animation-logo-out {
+    -webkit-animation:slide-out-elliptic-bottom-bck .7s ease-in both;animation:slide-out-elliptic-bottom-bck .7s ease-in both;
+}
+
+.animation-text-in {
+    -webkit-animation:tracking-in-expand-fwd-bottom .8s cubic-bezier(.215,.61,.355,1.000) both;animation:tracking-in-expand-fwd-bottom .8s cubic-bezier(.215,.61,.355,1.000) both;
+}
+
+.animation-text-out {
+    -webkit-animation:tracking-out-expand-fwd-top .8s cubic-bezier(.55,.085,.68,.53) both;animation:tracking-out-expand-fwd-top .8s cubic-bezier(.55,.085,.68,.53) both;
+}
