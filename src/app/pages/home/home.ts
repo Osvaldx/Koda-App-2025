@@ -18,7 +18,7 @@ export class Home {
       if(resp.error) {
         console.log(resp.error);
       } else {
-        this.router.navigateByUrl('login', { replaceUrl: true });
+        this.router.navigateByUrl('/auth/login');
       }
     })
   }

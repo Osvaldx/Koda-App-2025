@@ -50,7 +50,7 @@ export class Login {
     }
 
     this.toastManager.show("success", "Inicio de Sesion exitoso!", 3000);
-    this.router.navigateByUrl('home', { replaceUrl: true });
+    this.router.navigateByUrl('home');
   }
 
   accessDirect(index: number){
