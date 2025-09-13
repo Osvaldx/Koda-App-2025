@@ -27,6 +27,23 @@
   - **ToastManager** para centralizar invocaciones.
   *(Sep 10, 2025)*
 
+- ✨ **Animaciones & Branding**
+  - Se agregó `animations.css`.
+  - Se agregaron animaciones para cada texto y el logo.
+  - Se incorporaron logos e imágenes de la app.
+
+- 🚀 **Splash Screen (Capacitor)**
+  - Se instaló `@capacitor/splash-screen`.
+  - Se configuró el splash screen.
+  - Se creó y **registró** el splash animado.
+  - Se registró la ruta de `assets/`.
+
+- 📦 **Android**
+  - App lista para abrir en **Android Studio**.
+
+- 🧹 **Limpieza**
+  - Se eliminó un atributo no utilizado.
+
 ---
 
 ## Stefania Bianchi _(StefaniaAyelen)_
