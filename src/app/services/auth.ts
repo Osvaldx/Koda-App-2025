@@ -28,4 +28,8 @@ export class Auth {
     return this.supabase.auth.signOut();
   }
 
+  public async signUp({ email, password, userMetadata }: { email: string, password: string, userMetadata: { name: string, lastName: string, identification: string } }) {
+    return true
+  }
+
 }
