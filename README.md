@@ -78,4 +78,17 @@
 - 📊 **Diff**
   - 16 cambios — **8 adiciones** / **8 eliminaciones**.
 
+### Actualizado — Sep 15, 2025
+
+- 🧭 **Ruteo & Navegación**
+  - Fix: Se corrigió la ruta del botón de redirección. (`8ecd372`)
+
+- 👤 **Registro & Perfiles**
+  - Feature: Diseño del formulario de registro básico. (`b645c90`)
+  - Feature: Componente para cargar imágenes de avatar. (`b72e680`)
+
+- 🎨 **Estilos & UX**
+  - Style: Efecto hover en el botón de remover imagen. (`8fa30e4`)
+  - Style: Pantalla de Register con *clip-curve*. (`25206dd`)
+
 ---
