@@ -14,6 +14,16 @@ export class Auth {
   
   private supabase: SupabaseClient = createClient(env.supabase.API_URL, env.supabase.API_KEY);
 
+  constructor() {
+    this.supabase.auth.onAuthStateChange((_event, session) => {
+      if(session?.user) {
+        this.currentUser.next(session.user);
+      } else {
+        this.currentUser.next(null);
+      }
+    })
+  }
+
   public async signIn(email: string, password: string) {
     const resp = await this.supabase.auth.signInWithPassword({ email, password });
 
@@ -25,11 +35,16 @@ export class Auth {
   }
 
   public signOut() {
+    this.resetUser();
     return this.supabase.auth.signOut();
   }
 
   public async signUp({ email, password, userMetadata }: { email: string, password: string, userMetadata: { name: string, lastName: string, identification: string } }) {
     return true
+  }
+
+  public resetUser(): void {
+    this.currentUser.next(null);
   }
 
 }
