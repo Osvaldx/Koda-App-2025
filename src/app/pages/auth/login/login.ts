@@ -62,7 +62,7 @@ export class Login {
   }
 
   navigateToRegister(){
-    this.router.navigateByUrl('register', {replaceUrl: true})
+    this.router.navigateByUrl('/auth/register')
   }
 
 }
