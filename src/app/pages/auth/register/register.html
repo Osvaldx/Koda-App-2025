@@ -86,8 +86,20 @@
                 </div>
             }
         </div>
+        <div class="w-80 space-y-2 mx-auto">
+          <div class="flex flex-col">
+            <div class="flex justify-center items-center gap-2 mb-1">
+              <span class="text-sm font-medium text-gray-700">Foto de perfil</span>
+              <span class="text-xs text-gray-500">(Opcional)</span>
+            </div>
+            <app-image-upload 
+              [hideText]="true" 
+              (imageDataChange)="onImageDataChange($event)">
+            </app-image-upload>
+          </div>
+        </div>
         
-        <button type="button" (click)="register()" class="bg-red-500 text-white rounded-2xl w-80 p-2">
+        <button type="button" (click)="register()" class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2">
             Registrarse
         </button>
     </form>
@@ -99,4 +111,5 @@
                 Iniciar Sesión
         </button>
     </div>
+
 </main>

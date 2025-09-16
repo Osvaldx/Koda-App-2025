@@ -5,6 +5,7 @@ import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../../services/toast-manager';
 import { getFormError } from '../../../utils/utils';
+import { ImageUploadComponent, ImageUploadData } from '../../../components/attachments/picture/picture';
 
 type FormType = {
   name: FormControl<string | null>;
@@ -18,7 +19,7 @@ type FormType = {
 @Component({
   selector: 'app-register',
   standalone: true,
-  imports: [ReactiveFormsModule, CustomInput],
+  imports: [ReactiveFormsModule, CustomInput, ImageUploadComponent],
   templateUrl: './register.html',
   styleUrl: './register.css'
 })
@@ -55,9 +56,12 @@ export class Register {
         }
       ])
     });
+
   }
+  imageData: ImageUploadData | null = null
 
   public async register() {
+    console.log(this.imageData)
     const { email, password, name, lastName, identification } = this.registerForm.value;
     if (email?.trim() === "" || password?.trim() === "" || name?.trim() === "" || lastName?.trim() === "" || identification?.trim() === "") { return this.toastManager.show("error", "Complete todos los campos", 3000) }
 
@@ -92,5 +96,9 @@ export class Register {
 
   protected getInputError(controlName: string) {
     return getFormError(this.registerForm, controlName)
+  }
+
+  protected onImageDataChange(data: ImageUploadData | null) {
+    this.imageData = data;
   }
 }
