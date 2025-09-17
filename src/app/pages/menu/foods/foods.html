@@ -1,1 +1,76 @@
-<p>foods works!</p>
+<main class="relative min-h-screen bg-red-100 flex flex-col">
+    <!-- Header -->
+    <header
+        class="flex justify-between items-center px-4 py-3 bg-gradient-to-r from-red-800 to-red-700 text-white shadow-md">
+        <!-- Botón hamburguesa -->
+        <button (click)="toggleMenu()" class="flex flex-col gap-1 focus:outline-none">
+            <span class="block w-6 h-0.5 bg-white"></span>
+            <span class="block w-6 h-0.5 bg-white"></span>
+            <span class="block w-6 h-0.5 bg-white"></span>
+        </button>
+
+        <!-- Logo / título -->
+        <h1 class="text-lg font-bold">Comidas</h1>
+
+        <!-- Avatar -->
+        <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
+            <img src="https://i.pravatar.cc/100" alt="User" class="w-full h-full object-cover">
+        </div>
+    </header>
+
+    <!-- Menu lateral -->
+    <aside [class.translate-x-0]="menuOpen" [class.-translate-x-full]="!menuOpen"
+        class="fixed top-0 left-0 w-64 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 flex flex-col justify-between">
+        <div>
+            <div class="p-5 bg-red-800 flex flex-col gap-2">
+                <h2 class="text-xl font-semibold text-white text-center uppercase">Menú de opciones</h2>
+                <p class="text-center border border-gray-500 rounded-2xl bg-white p-1">{{userEmail}}</p>
+            </div>
+            <nav class="flex flex-col p-5 space-y-4 text-gray-700">
+                <!-- Cambiar por el boton custom -->
+                <button class="text-center px-3 py-2 rounded hover:bg-red-100 border border-red-500">🍔 Comidas</button>
+                <button class="text-center px-3 py-2 rounded hover:bg-red-100 border border-red-500">🥤 Bebidas</button>
+            </nav>
+        </div>
+        <div class="text-center">
+            <button class="text-center px-3 py-2 text-white font-bold rounded hover:bg-red-100 bg-red-800 mb-10"
+                (click)="sessionClose()">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <!-- Menu abierto -->
+    @if (menuOpen) {
+    <div (click)="toggleMenu()" class="fixed inset-0 bg-black/40 z-40"></div>
+    }
+
+    <!-- Contenido principal -->
+    <section class="flex flex-col items-center p-6 gap-3">
+        <input class="border border-black p-2 w-full px-5" type="text" placeholder="Buscar comida...">
+        <div class="flex gap-2">
+            <button class="border border-red-600 p-2 rounded-full bg-gray-100 text-red-500 font-bold">Todo</button>
+            <button class="border border-red-600 p-2 rounded-full bg-gray-100 text-red-500 font-bold">Ensaladas</button>
+            <button class="border border-red-600 p-2 rounded-full bg-gray-100 text-red-500 font-bold">Pastas</button>
+            <button class="border border-red-600 p-2 rounded-full bg-gray-100 text-red-500 font-bold">Carne</button>
+        </div>
+    </section>
+    <section class="flex gap-2 text-center flex-wrap">
+        <div class="border border-red-500 bg-white flex flex-col items-center w-50 rounded-2xl p-2">
+            <h4 class="text-2xl font-bold text-black/70">Pizza</h4>
+            <img class="size-25 object-cover rounded-2xl" src="https://www.sortirambnens.com/wp-content/uploads/2019/02/pizza-de-peperoni.jpg" alt="">
+            <p class="text-gray-600">Una masa con tomate y queso</p>
+            <button class="text-white bg-red-700 p-1 rounded-2xl font-bold px-3">Agregar</button>
+        </div>
+        <div class="border border-red-500 bg-white flex flex-col items-center w-50 rounded-2xl p-2">
+            <h4 class="text-2xl font-bold text-black/70">Hamburguesa</h4>
+            <img class="size-25 object-cover rounded-2xl" src="https://img.hogar.mapfre.es/wp-content/uploads/2018/09/hamburguesa-sencilla.jpg" alt="">
+            <p class="text-gray-600">Pan, carne, queso, lechuga, tomate</p>
+            <button class="text-white bg-red-700 p-1 rounded-2xl font-bold px-3">Agregar</button>
+        </div>
+        <div class="border border-red-500 bg-white flex flex-col items-center w-50 rounded-2xl p-2">
+            <h4 class="text-2xl font-bold text-black/70">Papas fritas</h4>
+            <img class="size-25 object-cover rounded-2xl" src="https://cocina-casera.com/wp-content/uploads/2023/01/patatas-fritas-crujientes-francesa-1-770x485.jpg" alt="">
+            <p class="text-gray-600">Papas fritas xd</p>
+            <button class="text-white bg-red-700 p-1 rounded-2xl font-bold px-3">Agregar</button>
+        </div>
+    </section>
+</main>
