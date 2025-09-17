@@ -1,1 +1,115 @@
-<p>register works!</p>
+<main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
+    <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
+    </div>
+    <form [formGroup]="registerForm" class="relative z-10 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-red-500">Crear Cuenta</h1>
+            <p>Completa el formulario para registrarte</p>
+        </div>
+        <div class="flex justify-center items-center flex-col gap-2">
+            <!-- Nombre -->
+            <app-custom-input 
+                [controller]="registerForm.controls.name" 
+                type="text" 
+                autocomplete="given-name" 
+                placeholder="Nombre">
+            </app-custom-input>
+            @if (registerForm.controls.name.errors && registerForm.controls.name.touched) {
+                <div class="text-sm text-red-500">
+                        <p>{{getInputError('name')}}</p>
+                </div>
+            }
+
+            <!-- Apellido -->
+            <app-custom-input 
+                [controller]="registerForm.controls.lastName" 
+                type="text" 
+                autocomplete="family-name" 
+                placeholder="Apellido">
+            </app-custom-input>
+            @if (registerForm.controls.lastName.errors && registerForm.controls.lastName.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('lastName')}}</p>
+                </div>
+            }
+
+            <!-- DNI/CUIL -->
+            <app-custom-input 
+                [controller]="registerForm.controls.identification" 
+                type="text" 
+                inputmode="numeric"
+                autocomplete="off" 
+                placeholder="DNI/CUIL">
+            </app-custom-input>
+            @if (registerForm.controls.identification.errors && registerForm.controls.identification.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('identification')}}</p>
+                </div>
+            }
+
+            <!-- Email -->
+            <app-custom-input 
+                [controller]="registerForm.controls.email" 
+                type="email" 
+                autocomplete="email" 
+                placeholder="Email">
+            </app-custom-input>
+            @if (registerForm.controls.email.errors && registerForm.controls.email.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('email')}}</p>
+                </div>
+            }
+
+            <!-- Contraseña -->
+            <app-custom-input 
+                [controller]="registerForm.controls.password" 
+                type="password" 
+                autocomplete="new-password" 
+                placeholder="Contraseña">
+            </app-custom-input>
+            @if (registerForm.controls.password.errors && registerForm.controls.password.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('password')}}</p>
+                </div>
+            }
+
+            <!-- Confirmar Contraseña -->
+            <app-custom-input 
+                [controller]="registerForm.controls.confirmPassword" 
+                type="password" 
+                autocomplete="new-password" 
+                placeholder="Confirmar Contraseña">
+            </app-custom-input>
+            @if (registerForm.controls.confirmPassword.errors && registerForm.controls.confirmPassword.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('confirmPassword')}}</p>
+                </div>
+            }
+        </div>
+        <div class="w-80 space-y-2 mx-auto">
+          <div class="flex flex-col">
+            <div class="flex justify-center items-center gap-2 mb-1">
+              <span class="text-sm font-medium text-gray-700">Foto de perfil</span>
+              <span class="text-xs text-gray-500">(Opcional)</span>
+            </div>
+            <app-image-upload 
+              [hideText]="true" 
+              (imageDataChange)="onImageDataChange($event)">
+            </app-image-upload>
+          </div>
+        </div>
+        
+        <button type="button" (click)="register()" class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2">
+            Registrarse
+        </button>
+    </form>
+
+    <div class="relative z-10 text-center text-gray-700 mt-4">
+        <p class="text-sm">¿Ya tienes cuenta?</p>
+        <button (click)="navigateToLogin()"
+            class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
+                Iniciar Sesión
+        </button>
+    </div>
+
+</main>

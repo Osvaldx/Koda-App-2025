@@ -1,6 +1,7 @@
-import { Component, signal } from '@angular/core';
+import { Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { CustomToast } from './components/custom-toast/custom-toast';
+import { SplashScreen } from "@capacitor/splash-screen"
 
 @Component({
   selector: 'app-root',
@@ -9,5 +10,5 @@ import { CustomToast } from './components/custom-toast/custom-toast';
   styleUrl: './app.css'
 })
 export class App {
-  protected readonly title = signal('topsecretApp');
+
 }

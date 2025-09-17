@@ -5,10 +5,11 @@ import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../../services/toast-manager';
 import { environment } from '../../../../environments/environment';
+import { CustomButton } from '../../../components/custom-button/custom-button';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CustomInput],
+  imports: [ReactiveFormsModule, CustomInput, CustomButton],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
@@ -29,6 +30,8 @@ export class Login {
   public async login() {
     const email = this.loginForm.controls.email.value;
     const password = this.loginForm.controls.password.value;
+    
+    if(email?.trim() === "" || password?.trim() === "") { return this.toastManager.show("error", "Complete todos los campos", 3000) }
 
     const { error } = await this.authService.signIn(email!, password!);
 
@@ -48,7 +51,7 @@ export class Login {
     }
 
     this.toastManager.show("success", "Inicio de Sesion exitoso!", 3000);
-    this.router.navigateByUrl('home', { replaceUrl: true });
+    this.router.navigateByUrl('home');
   }
 
   accessDirect(index: number){
@@ -60,7 +63,7 @@ export class Login {
   }
 
   navigateToRegister(){
-    this.router.navigateByUrl('register', {replaceUrl: true})
+    this.router.navigateByUrl('/auth/register')
   }
 
 }

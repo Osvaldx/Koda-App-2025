@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">KodaApp</string>
+    <string name="title_activity_main">KodaApp</string>
+    <string name="package_name">com.kadoapp.arg</string>
+    <string name="custom_url_scheme">com.kadoapp.arg</string>
+</resources>
