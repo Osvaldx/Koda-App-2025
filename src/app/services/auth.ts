@@ -120,6 +120,11 @@ export class Auth {
     return data;
   }
 
+  public getUserPhoto({ path }: { path: string }): string | null {
+    const { data } = this.supabase.storage.from('koda-avatars').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
   public resetUser(): void {
     this.currentUser.next(null);
   }
