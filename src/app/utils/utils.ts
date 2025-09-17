@@ -16,6 +16,11 @@ export const getFormErrors = (formGroup: FormGroup, controlName?: string): strin
             maxlength: `El campo '${formName}' no puede tener más de ${formMaxLenght} caracteres`,
             min: `'${formName}' debe ser mayor o igual a ${formGroup.get(controlName)?.errors?.["min"]?.min}`,
             max: `'${formName}' debe ser menor o igual a ${formGroup.get(controlName)?.errors?.["max"]?.max}`,
+            invalidDni: "El DNI debe tener 8 caracteres",
+            invalidIdentification: "El DNI/CUIL debe tener 8 o 11 caracteres",
+            invalidCuilLength: "El CUIL debe tener 11 caracteres",
+            invalidCuilFormat: "El CUIL solo debe contener números",
+            invalidCuilPrefix: "El CUIL debe tener prefijo válido",
         }
         const firstErrorKey = Object.keys(formGroup.get(controlName)?.errors || {})[0]
         return errorMessages[firstErrorKey] || "Error desconocido"
@@ -43,6 +48,7 @@ const getFormName = (text: string) => {
         email: "Correo electrónico",
         password: "Contraseña",
         repeatedPassword: "Repetir contraseña",
+        identification: "DNI/CUIL",
     }
     return formsName[text] || text
 }

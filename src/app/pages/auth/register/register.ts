@@ -16,6 +16,8 @@ import {
   ImageUploadComponent,
   ImageUploadData,
 } from '../../../components/attachments/picture/picture';
+import { validateCuil, validateDni } from '../../../utils/validations';
+import { AuthApiError } from '@supabase/supabase-js';
 
 type FormType = {
   name: FormControl<string | null>;
@@ -47,8 +49,20 @@ export class Register {
       identification: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/),
-        Validators.minLength(7),
-        Validators.maxLength(15),
+        Validators.minLength(8),
+        Validators.maxLength(11),
+        (control: AbstractControl) => {
+          const identification = control.value;
+          if (control.value.length === 8) {
+            return validateDni(identification);
+          }
+          else if (control.value.length === 11) {
+            return validateCuil(identification);
+          } else {
+            return { invalidIdentification: true };
+          }
+          return null;
+        }
       ]),
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
@@ -65,6 +79,7 @@ export class Register {
 
   public async register() {
     console.log(this.imageData);
+    this.registerForm.disable()
     const { email, password, name, lastName, identification } = this.registerForm.value;
     if (
       email?.trim() === '' ||
@@ -102,7 +117,15 @@ export class Register {
       this.router.navigate(['/home']);
     } catch (error) {
       console.error('Registration error:', error);
-      this.toastManager.show('error', 'Error inesperado. Por favor intenta de nuevo.', 3000);
+
+      if (error instanceof AuthApiError) {
+        this.toastManager.show('error', 'Error. El usuario ya se encuentra registrado.', 3000);
+      } else {
+        this.toastManager.show('error', 'Error inesperado. Por favor intenta de nuevo.', 3000);
+      }
+
+    } finally {
+      this.registerForm.enable()
     }
   }
 
