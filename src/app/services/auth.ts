@@ -49,33 +49,21 @@ export class Auth {
     const payload = {
       email,
       password,
-    };
+      options: {
+        data: {
+          first_name: userMetadata.name,
+          last_name: userMetadata.lastName,
+          dni: userMetadata.identification,
+        },
+      },
+    } as const;
 
     const { data, error } = await this.supabase.auth.signUp(payload);
     if (error) {
       throw error;
     }
-    if (data.user) {
-      try {
-        const { error: insertError } = await this.supabase.from('users').insert([
-          {
-            user_id: data.user.id,
-            first_name: userMetadata.name,
-            last_name: userMetadata.lastName,
-            dni: userMetadata.identification,
-          },
-        ]);
-        if (insertError) {
-          await this.supabase.auth.admin.deleteUser(data.user.id);
-          throw insertError;
-        }
-        if (userMetadata.image) {
-          await this.upsertUserPhoto(userMetadata.image);
-        }
-      } catch (e) {
-        console.error('Error al insertar usuario:', e);
-        throw e;
-      }
+    if (userMetadata.image) {
+      await this.upsertUserPhoto(userMetadata.image);
     }
 
     return { data, error };
