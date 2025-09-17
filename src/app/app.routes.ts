@@ -17,5 +17,6 @@ export const routes: Routes = [
             { path: "foods", loadComponent: () => import('./pages/menu/foods/foods').then(m => m.Foods) },
             { path: "drinks", loadComponent: () => import('./pages/menu/drinks/drinks').then(m => m.Drinks) }
         ]
-    }
+    },
+    {path: "WaiterScreen", loadComponent: () => import('./pages/waiter-screen/waiter-screen').then(m => m.WaiterScreen)}
 ];
