@@ -44,6 +44,16 @@
 - 🧹 **Limpieza**
   - Se eliminó un atributo no utilizado.
 
+### Actualizado — Sep 16, 2025
+
+- 🔐 **Sesión & Perfil**
+  - Ahora se actualiza al detectar cambio en la sesión y se agregó `resetUser`. (`d340a6c`)
+
+- 🏠 **Home (UI)**
+  - Se agregó el **estilado de Home**. (`1d8e1f9`)
+
+- 📋 **Menú & Datos de usuario**
+  - Lógica del menú y binding de datos del usuario. (`1e10382`)
 ---
 
 ## Stefania Bianchi _(StefaniaAyelen)_
