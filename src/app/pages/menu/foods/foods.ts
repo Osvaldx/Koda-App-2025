@@ -2,10 +2,12 @@ import { Component, inject } from '@angular/core';
 import { ToastManager } from '../../../services/toast-manager';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
+import { ProductCard } from '../../../components/product-card/product-card';
+import { CustomButton } from '../../../components/custom-button/custom-button';
 
 @Component({
   selector: 'app-foods',
-  imports: [],
+  imports: [ProductCard, CustomButton],
   templateUrl: './foods.html',
   styleUrl: './foods.css'
 })
