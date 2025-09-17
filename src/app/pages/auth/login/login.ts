@@ -54,7 +54,7 @@ export class Login {
   }
 
   accessDirect(index: number){
-    const cuenta = environment.cuentaRapida[index];
+    const cuenta = environment.cuentasRapidas[index];
     this.loginForm.patchValue({
       email: cuenta.email,
       password: cuenta.password
