@@ -14,17 +14,17 @@ export class CustomButton {
   @Input() label: string = ''; 
   @Input() type: buttonStyle = 'primary'
   @Input() disabled: boolean = false;
-
-
+  @Input() customStyle?: string = '';
 
   protected styleButton(){
+    const styles = (this.customStyle === '') ? 'w-80 p-2' : this.customStyle;
     switch(this.type){
       case 'primary':
-        return 'bg-red-500 text-white rounded-2xl w-80 p-2 cursor-pointer'
+        return `bg-red-500 text-white rounded-2xl ${styles} cursor-pointer`;
       case 'secondary':
-        return 'bg-white text-red-500 border border-red-500 rounded-2xl w-80 p-2 hover:bg-red-50 transition cursor-pointer';
+        return `bg-white text-red-500 border border-red-500 rounded-2xl ${styles} hover:bg-red-50 transition cursor-pointer`;
       case 'tertiary':
-        return 'bg-transparent text-red-500 rounded-2xl w-80 p-2 hover:bg-red-100 transition cursor-pointer';
+        return `bg-transparent text-red-500 rounded-2xl ${styles} hover:bg-red-100 transition cursor-pointer`;
     }
   }
 }
