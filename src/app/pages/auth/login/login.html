@@ -28,20 +28,18 @@
                     }
         </div>
         
-        <button class="bg-red-500 text-white rounded-2xl w-80 p-2" (click)="login()" type="button">Iniciar Sesion</button>
+        <app-custom-button  (click)="login()" type="primary" label="Iniciar Sesión"></app-custom-button>
         <a href="" class="text-sm text-gray-500">Olvidaste tu contraseña?</a>
     </form>
 
-    <div class="relative z-10 text-center text-gray-700 mt-4">
+    <div class="relative z-10 text-center text-gray-700 mt-4 flex flex-col gap-3">
         <p class="text-sm">¿No tienes cuenta?</p>
-        <button (click)="navigateToRegister()"
-            class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
-                Regístrate aquí
-        </button>
+        <app-custom-button (click)="navigateToRegister()"
+            type="secondary" label="Regístrate aquí">
+        </app-custom-button>
+        <app-custom-button (click)="accessDirect(0)"
+                type="secondary" label="Acceso directo">
+        </app-custom-button>
     </div>
 
-    <button (click)="accessDirect(0)"
-            class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
-                Acceso directo
-    </button>
 </main>
