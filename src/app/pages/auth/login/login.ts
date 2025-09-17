@@ -5,10 +5,11 @@ import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../../services/toast-manager';
 import { environment } from '../../../../environments/environment';
+import { CustomButton } from '../../../components/custom-button/custom-button';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, CustomInput],
+  imports: [ReactiveFormsModule, CustomInput, CustomButton],
   templateUrl: './login.html',
   styleUrl: './login.css'
 })
