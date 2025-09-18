@@ -17,5 +17,12 @@ export const routes: Routes = [
             { path: "foods", loadComponent: () => import('./pages/menu/foods/foods').then(m => m.Foods) },
             { path: "drinks", loadComponent: () => import('./pages/menu/drinks/drinks').then(m => m.Drinks) }
         ]
+    },
+    {
+        path: "chef",
+        children: [
+            { path: 'formFoods', loadComponent: () => import('./pages/chef/form-foods/form-foods').then(m => m.FormFoods)},
+            { path: 'formDrinks', loadComponent: () => import('./pages/chef/form-drinks/form-drinks').then(m => m.FormDrinks) }
+        ]
     }
 ];
