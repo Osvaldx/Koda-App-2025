@@ -1,0 +1,8 @@
+<div [ngClass]="getContainerClasses()">
+    <div [ngClass]="getCircleClasses()">
+        {{tableNumber}}
+    </div>
+    <p class="mt-4 font-semibold text-gray-700">Mesa {{tableNumber}}</p>
+    <span [ngClass]="getStatusClasses()">{{status}}</span>
+    <button [ngClass]="getButtonClasses()">{{buttonText}}</button>
+</div>
