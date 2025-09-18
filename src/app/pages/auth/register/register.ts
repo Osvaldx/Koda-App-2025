@@ -64,7 +64,20 @@ export class Register {
           return null;
         }
       ]),
-      email: new FormControl('', [Validators.required, Validators.email]),
+      email: new FormControl('', [
+        Validators.required,
+        Validators.email,
+        (control: AbstractControl) => {
+          if (!control.value) {
+            return null;
+          }
+          const emailDomain = control.value?.split('@')[1];
+          if (emailDomain.length > 24) {
+            return { invalidDomain: true };
+          }
+          return null;
+        },
+      ]),
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', [
         Validators.required,
