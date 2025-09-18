@@ -1,0 +1,89 @@
+<main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
+    <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
+    </div>
+    <form [formGroup]="dishForm" class="relative z-9 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-red-500">Crear plato</h1>
+            <p>Completa el formulario para registrar un plato</p>
+        </div>
+        <div class="flex justify-center items-center flex-col gap-2">
+            <!-- Nombre -->
+            <app-custom-input-chef 
+                [controller]="this.dishForm.controls.name" 
+                type="text" 
+                autocomplete="given-name" 
+                placeholder="Nombre del plato">
+            </app-custom-input-chef>
+            @if (this.dishForm.controls.name.errors && this.dishForm.controls.name.touched) {
+                <div class="text-sm text-red-500">
+                        <p>[!] El nombre es requerido</p>
+                </div>
+            }
+
+            <!-- Descripcion -->
+            <app-custom-input-chef 
+                [controller]="this.dishForm.controls.description" 
+                type="text" 
+                autocomplete="given-name" 
+                placeholder="Descripcion del plato">
+            </app-custom-input-chef>
+            @if (this.dishForm.controls.description.errors && this.dishForm.controls.description.touched) {
+                <div class="text-sm text-red-500">
+                        <p>[!] La descripcion es requerida</p>
+                </div>
+            }
+
+            <!-- Tiempo -->
+            <app-custom-input-chef 
+                [controller]="this.dishForm.controls.time" 
+                type="number" 
+                autocomplete="given-name" 
+                placeholder="Tiempo de elaboracion">
+            </app-custom-input-chef>
+            @if (this.dishForm.controls.time.errors && this.dishForm.controls.time.touched) {
+                <div class="text-sm text-red-500">
+                        <p>[!] El tiempo es requerido</p>
+                </div>
+            }
+
+            <!-- Precio -->
+            <app-custom-input-chef 
+                [controller]="this.dishForm.controls.price" 
+                type="number" 
+                autocomplete="given-name" 
+                placeholder="Precio">
+            </app-custom-input-chef>
+            @if (this.dishForm.controls.price.errors && this.dishForm.controls.price.touched) {
+                <div class="text-sm text-red-500">
+                        <p>[!] El precio es requerido</p>
+                </div>
+            }
+
+        </div>
+        <div class="w-80 space-y-2 mx-auto">
+            <div class="flex flex-col">
+                <div class="flex justify-center items-center gap-2 mb-1">
+                    <span class="text-sm font-medium text-gray-700">Foto de plato</span>
+                </div>
+                <div class="flex flex-col gap-3">
+                    <app-image-upload 
+                        [hideText]="true" 
+                        (imageDataChange)="onImageDataChange($event)">
+                    </app-image-upload>
+                    <app-image-upload 
+                        [hideText]="true" 
+                        (imageDataChange)="onImageDataChange($event)">
+                    </app-image-upload>
+                    <app-image-upload 
+                        [hideText]="true" 
+                        (imageDataChange)="onImageDataChange($event)">
+                    </app-image-upload>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" (click)="registerDish()" class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2">
+            Registrar Plato
+        </button>
+    </form>
+</main>
