@@ -1,0 +1,55 @@
+<main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
+    <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
+    </div>
+    <form [formGroup]="guestForm" class="relative z-10 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-red-500">Crear Cuenta</h1>
+            <p>Completa el formulario para registrarte</p>
+        </div>
+        <div class="flex justify-center items-center flex-col gap-2">
+            <!-- Nombre -->
+            <app-custom-input 
+                [controller]="guestForm.controls.name" 
+                type="text" 
+                autocomplete="given-name" 
+                placeholder="Nombre">
+            </app-custom-input>
+            @if (guestForm.controls.name.errors && guestForm.controls.name.touched) {
+                <div class="text-sm text-red-500">
+                        <p>{{getInputError('name')}}</p>
+                </div>
+            }
+            
+        </div>
+        <div class="w-80 space-y-2 mx-auto">
+          <div class="flex flex-col">
+            <div class="flex justify-center items-center gap-2 mb-1">
+              <span class="text-sm font-medium text-gray-700">Foto de perfil</span>
+              <span class="text-xs text-gray-500">(Opcional)</span>
+            </div>
+            <app-image-upload 
+              [hideText]="true" 
+              (imageDataChange)="onImageDataChange($event)">
+            </app-image-upload>
+          </div>
+        </div>
+        
+        <button type="button" (click)="register()" class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2">
+            Registrarse
+        </button>
+    </form>
+
+    <div class="relative z-10 text-center text-gray-700 mt-4">
+        <p class="text-sm">¿Ya tienes cuenta?</p>
+        <button (click)="navigateToLogin()"
+            class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
+                Iniciar Sesión
+        </button>
+
+        <button (click)="navigateToGuest()"
+        class="bg-white text-red-500 rounded-2xl w-80 p-2 mt-2">
+            Registrarse como invitado
+    </button>
+    </div>
+
+</main>
