@@ -25,5 +25,7 @@ export const routes: Routes = [
             { path: "homeowner", loadComponent: () => import('./pages/owner/home-owner/home-owner').then(m => m.HomeOwner) },
             { path: "employeeform", loadComponent: () => import('./pages/owner/employee-form/employee-form').then(m => m.EmployeeForm) }
         ]
-    }
+    },
+    {path: "waiterscreen", loadComponent: () => import('./pages/waiter-screen/waiter-screen').then(m => m.WaiterScreen)}
+
 ];
