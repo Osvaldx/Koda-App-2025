@@ -2,10 +2,11 @@ import { Component, inject } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../services/toast-manager';
+import { CustomButton } from '../../components/custom-button/custom-button';
 
 @Component({
   selector: 'app-home',
-  imports: [],
+  imports: [CustomButton],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
@@ -39,5 +40,13 @@ export class Home {
 
   public toggleMenu() {
     this.menuOpen = !this.menuOpen;
+  }
+
+  navigateToDrinks(){
+    this.router.navigateByUrl('/menu/drinks')
+  }
+
+  navigateToFoods(){
+    this.router.navigateByUrl('/menu/foods')
   }
 }
