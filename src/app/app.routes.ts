@@ -18,5 +18,12 @@ export const routes: Routes = [
             { path: "foods", loadComponent: () => import('./pages/menu/foods/foods').then(m => m.Foods) },
             { path: "drinks", loadComponent: () => import('./pages/menu/drinks/drinks').then(m => m.Drinks) }
         ]
+    },
+    {
+        path: "owner",
+        children: [
+            { path: "homeowner", loadComponent: () => import('./pages/owner/home-owner/home-owner').then(m => m.HomeOwner) },
+            { path: "employeeform", loadComponent: () => import('./pages/owner/employee-form/employee-form').then(m => m.EmployeeForm) }
+        ]
     }
 ];
