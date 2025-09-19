@@ -1,12 +1,12 @@
 import { Component, inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ImageUploadComponent, ImageUploadData } from '../../../components/attachments/picture/picture';
-import { CustomInputChef } from '../../../components/custom-input-chef/custom-input-chef';
+import { CustomInput } from '../../../components/custom-input/custom-input';
 import { ToastManager } from '../../../services/toast-manager';
 
 @Component({
   selector: 'app-form-foods',
-  imports: [ReactiveFormsModule, CustomInputChef, ImageUploadComponent],
+  imports: [ReactiveFormsModule, CustomInput, ImageUploadComponent],
   templateUrl: './form-foods.html',
   styleUrl: './form-foods.css'
 })
