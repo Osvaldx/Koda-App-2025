@@ -21,8 +21,8 @@ export const routes: Routes = [
     {
         path: "chef",
         children: [
-            { path: 'formFoods', loadComponent: () => import('./pages/chef/form-foods/form-foods').then(m => m.FormFoods)},
-            { path: 'formDrinks', loadComponent: () => import('./pages/chef/form-drinks/form-drinks').then(m => m.FormDrinks) }
+            { path: 'formfoods', loadComponent: () => import('./pages/chef/form-foods/form-foods').then(m => m.FormFoods)},
+            { path: 'formdrinks', loadComponent: () => import('./pages/chef/form-drinks/form-drinks').then(m => m.FormDrinks) }
         ]
     }
 ];
