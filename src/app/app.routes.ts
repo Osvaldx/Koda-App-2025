@@ -11,6 +11,7 @@ export const routes: Routes = [
     },
     { path: "home", loadComponent: () => import('./pages/home/home').then(m => m.Home) },
     { path: "splash", loadComponent: () => import('./pages/splash/splash').then(m => m.Splash) },
+    { path: "maitre", loadComponent: () => import('./pages/maitre/maitre').then(m => m.Maitre) },
     {
         path: "menu",
         children: [
@@ -24,5 +25,6 @@ export const routes: Routes = [
             { path: 'formfoods', loadComponent: () => import('./pages/chef/form-foods/form-foods').then(m => m.FormFoods)},
             { path: 'formdrinks', loadComponent: () => import('./pages/chef/form-drinks/form-drinks').then(m => m.FormDrinks) }
         ]
-    }
+    },
+    {path: "waiterscreen", loadComponent: () => import('./pages/waiter-screen/waiter-screen').then(m => m.WaiterScreen)}
 ];

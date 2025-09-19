@@ -1,11 +1,23 @@
 import { Component, inject } from '@angular/core';
-import { FormGroup, FormControl, ReactiveFormsModule, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
+import {
+  FormGroup,
+  FormControl,
+  ReactiveFormsModule,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+} from '@angular/forms';
 import { CustomInput } from '../../../components/custom-input/custom-input';
 import { Auth } from '../../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../../services/toast-manager';
 import { getFormError } from '../../../utils/utils';
-import { ImageUploadComponent, ImageUploadData } from '../../../components/attachments/picture/picture';
+import {
+  ImageUploadComponent,
+  ImageUploadData,
+} from '../../../components/attachments/picture/picture';
+import { validateCuil, validateDni } from '../../../utils/validations';
+import { AuthApiError } from '@supabase/supabase-js';
 
 type FormType = {
   name: FormControl<string | null>;
@@ -21,7 +33,7 @@ type FormType = {
   standalone: true,
   imports: [ReactiveFormsModule, CustomInput, ImageUploadComponent],
   templateUrl: './register.html',
-  styleUrl: './register.css'
+  styleUrl: './register.css',
 })
 export class Register {
   authService = inject(Auth);
@@ -37,33 +49,60 @@ export class Register {
       identification: new FormControl('', [
         Validators.required,
         Validators.pattern(/^[0-9]+$/),
-        Validators.minLength(7),
-        Validators.maxLength(15)
+        Validators.minLength(8),
+        Validators.maxLength(11),
+        (control: AbstractControl) => {
+          const identification = control.value;
+          if (control.value.length === 8) {
+            return validateDni(identification);
+          }
+          else if (control.value.length === 11) {
+            return validateCuil(identification);
+          } else {
+            return { invalidIdentification: true };
+          }
+          return null;
+        }
       ]),
       email: new FormControl('', [
         Validators.required,
-        Validators.email
+        Validators.email,
+        (control: AbstractControl) => {
+          if (!control.value) {
+            return null;
+          }
+          const emailDomain = control.value?.split('@')[1];
+          if (emailDomain.length > 24) {
+            return { invalidDomain: true };
+          }
+          return null;
+        },
       ]),
-      password: new FormControl('', [
-        Validators.required,
-        Validators.minLength(6)
-      ]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
       confirmPassword: new FormControl('', [
         Validators.required,
         (control: AbstractControl) => {
           const password = this.registerForm?.get('password')?.value;
           return control.value === password ? null : { passwordsNotMatch: true };
-        }
-      ])
+        },
+      ]),
     });
-
   }
-  imageData: ImageUploadData | null = null
+  imageData: ImageUploadData | null = null;
 
   public async register() {
-    console.log(this.imageData)
+    console.log(this.imageData);
+    this.registerForm.disable()
     const { email, password, name, lastName, identification } = this.registerForm.value;
-    if (email?.trim() === "" || password?.trim() === "" || name?.trim() === "" || lastName?.trim() === "" || identification?.trim() === "") { return this.toastManager.show("error", "Complete todos los campos", 3000) }
+    if (
+      email?.trim() === '' ||
+      password?.trim() === '' ||
+      name?.trim() === '' ||
+      lastName?.trim() === '' ||
+      identification?.trim() === ''
+    ) {
+      return this.toastManager.show('error', 'Complete todos los campos', 3000);
+    }
 
     if (!email || !password || !name || !lastName || !identification) {
       return this.toastManager.show('error', 'Todos los campos son requeridos', 3000);
@@ -74,19 +113,32 @@ export class Register {
     }
 
     try {
-      const data = await this.authService.signUp({
+      const { data, error } = await this.authService.signUp({
         email,
         password,
         userMetadata: {
           name,
           lastName,
-          identification
-        }
+          identification,
+          image: this.imageData?.file || null,
+        },
       });
-
+      if (error) {
+        throw error;
+      }
+      this.toastManager.show('success', 'Registro exitoso', 3000);
+      this.router.navigate(['/home']);
     } catch (error) {
       console.error('Registration error:', error);
-      this.toastManager.show('error', 'Error inesperado. Por favor intenta de nuevo.', 3000);
+
+      if (error instanceof AuthApiError) {
+        this.toastManager.show('error', 'Error. El usuario ya se encuentra registrado.', 3000);
+      } else {
+        this.toastManager.show('error', 'Error inesperado. Por favor intenta de nuevo.', 3000);
+      }
+
+    } finally {
+      this.registerForm.enable()
     }
   }
 
@@ -95,7 +147,7 @@ export class Register {
   }
 
   protected getInputError(controlName: string) {
-    return getFormError(this.registerForm, controlName)
+    return getFormError(this.registerForm, controlName);
   }
 
   protected onImageDataChange(data: ImageUploadData | null) {

@@ -20,9 +20,11 @@ export class ImageUploadComponent {
   @Input() hideText = false;
   @Output() imageDataChange = new EventEmitter<ImageUploadData | null>();
   imageSrc: string = '';
+  private selectedFile: File | null = null;
 
   myForm = new FormGroup({
-    file: new FormControl<File | null>(null, [Validators.required]),
+    // Do not require the file control; browsers forbid setting it programmatically
+    file: new FormControl<File | null>(null),
     fileSource: new FormControl<string>('', [Validators.required])
   });
 
@@ -58,9 +60,10 @@ export class ImageUploadComponent {
         if (reader.result) {
           this.imageSrc = reader.result.toString();
 
-          // Only update the fileSource control, not the file input
+          // Keep the actual File in component state, and only update the preview data URL in the form
+          this.selectedFile = file;
           this.myForm.patchValue({
-            fileSource: this.imageSrc
+            fileSource: this.imageSrc,
           });
 
           this.myForm.updateValueAndValidity();
@@ -94,7 +97,7 @@ export class ImageUploadComponent {
     if (this.imageSrc && this.myForm.valid) {
       const imageData: ImageUploadData = {
         imageSrc: this.imageSrc,
-        file: this.myForm.value.file || null,
+        file: this.selectedFile,
         fileSource: this.myForm.value.fileSource || null,
         isValid: this.myForm.valid
       };
@@ -109,6 +112,7 @@ export class ImageUploadComponent {
    */
   removeImage() {
     this.imageSrc = '';
+    this.selectedFile = null;
     this.myForm.patchValue({
       file: null,
       fileSource: ''

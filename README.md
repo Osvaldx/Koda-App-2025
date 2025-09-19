@@ -69,6 +69,15 @@
   - **Botón “ojo”** para mostrar/ocultar contraseña. *(Sep 12, 2025)*
   - **Lógica** para alternar el tipo del input (password/text). *(Sep 12, 2025)*
 
+- 🧭 **Ruteo**
+  - Agregado de ruta de registro. (`5f16ab1`)
+
+- ⚡ **Accesos rápidos / Cuentas**
+  - Agregado de acceso directo. (`714a517`)
+  - Lógica del acceso directo. (`5d8741b`)
+  - Agregado de la cuenta rápida. (`7a9b875`)
+  - Agregado de cuentas. (`b68b41d`)
+
 ---
 
 ## Federico Deniard
@@ -100,5 +109,11 @@
 - 🎨 **Estilos & UX**
   - Style: Efecto hover en el botón de remover imagen. (`8fa30e4`)
   - Style: Pantalla de Register con *clip-curve*. (`25206dd`)
+
+### Actualizado — Sep 17, 2025
+
+- ✅ **Registro & Validaciones**
+  - Fix: Se arreglaron las validaciones del formulario de registro. (`e17dcdd`)
+  - Fix: Validación del dominio del correo electrónico. (`1886f54`)
 
 ---
