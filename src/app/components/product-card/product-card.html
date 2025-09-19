@@ -1,6 +1,6 @@
-<div class="border border-red-500 bg-white flex flex-col items-center w-50 rounded-2xl p-2">
-    <h4 class="text-2xl font-bold text-black/70">{{title}}</h4>
-    <img class="size-25 object-cover rounded-2xl" [src]="urlImg" alt="">
-    <p class="text-gray-600">{{description}}</p>
+<div class="border border-red-500 bg-white flex flex-col items-center w-48 sm:w-56 md:w-64 lg:w-72 rounded-2xl p-2 sm:p-3 md:p-4">
+    <h4 class="text-lg sm:text-xl md:text-2xl font-bold text-black/70 text-center">{{title}}</h4>
+    <img class="w-20 h-20 sm:w-24 sm:h-24 md:w-28 md:h-28 lg:w-32 lg:h-32 object-cover rounded-2xl my-2" [src]="urlImg" alt="{{title}}">
+    <p class="text-gray-600 text-sm sm:text-base text-center">{{description}}</p>
     <app-button-add></app-button-add>
 </div>
