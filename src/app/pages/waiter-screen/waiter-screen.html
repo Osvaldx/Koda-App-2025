@@ -10,7 +10,7 @@
         </button>
 
         <!-- Logo / título -->
-        <h1 class="text-lg font-bold">Home</h1>
+        <h1 class="text-lg font-bold">Mozo</h1>
 
         <!-- Avatar -->
         <div class="w-10 h-10 rounded-full overflow-hidden border-2 border-white">
@@ -26,11 +26,6 @@
                 <h2 class="text-xl font-semibold text-white text-center uppercase">Menú de opciones</h2>
                 <p class="text-center border border-gray-500 rounded-2xl bg-white p-1">{{userEmail}}</p>
             </div>
-            <nav class="flex flex-col p-5 space-y-4 text-gray-700">
-                <!-- Cambiar por el boton custom -->
-                <app-custom-button type="secondary" label="🍔 Comidas" (click)="navigateToFoods()" customStyle="w-full py-2"></app-custom-button>
-                <app-custom-button type="secondary" label="🥤 Bebidas ●" (click)="navigateToDrinks()" customStyle="w-full py-2">🥤 Bebidas</app-custom-button>
-            </nav>
         </div>
         <div class="text-center">
             <button class="text-center px-3 py-2 text-white font-bold rounded hover:bg-red-100 bg-red-800 mb-10"
@@ -44,7 +39,32 @@
     }
 
     <!-- Contenido principal -->
-    <section class="flex-1 flex flex-col justify-center items-center p-6">
-        <p class="text-gray-700">distintos menus...</p>
+    <section class="flex-1 flex flex-col justify-center items-center p-6 gap-4">
+        <h2 class="font-bold">-PEDIDOS-</h2>
+        <div class="border border-gray-500 rounded-2xl p-3 w-full">
+            <h2>Pedido 1</h2>
+            <p>1 hamburguesa, 2 Pizzas, 5 Cocas</p>
+            <div class="flex gap-2 justify-end mt-2">
+                <app-custom-button-orders type="accept" label="Aceptar Pedido"></app-custom-button-orders>
+                <app-custom-button-orders type="cancel" label="Cancelar Pedido"></app-custom-button-orders>
+            </div>
+        </div>
+        <div class="border border-gray-500 rounded-2xl p-3 w-full">
+            <h2>Pedido 2</h2>
+            <p>3 hamburguesas, 1 Pizza, 3 Aguas</p>
+            <div class="flex gap-2 justify-end mt-2">
+                <app-custom-button-orders type="accept" label="Aceptar Pedido"></app-custom-button-orders>
+                <app-custom-button-orders type="cancel" label="Cancelar Pedido"></app-custom-button-orders>
+            </div>
+        </div>
+        <div class="border border-gray-500 rounded-2xl p-3 w-full">
+            <h2>Pedido 3</h2>
+            <p>2 Pizzas, 2 Fanta</p>
+            <div class="flex gap-2 justify-end mt-2">
+                <app-custom-button-orders type="accept" label="Aceptar Pedido"></app-custom-button-orders>
+                <app-custom-button-orders type="cancel" label="Cancelar Pedido"></app-custom-button-orders>
+            </div>
+        </div>
+        
     </section>
 </main>

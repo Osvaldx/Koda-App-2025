@@ -2,15 +2,15 @@ import { Component, inject } from '@angular/core';
 import { Auth } from '../../services/auth';
 import { Router } from '@angular/router';
 import { ToastManager } from '../../services/toast-manager';
-import { CustomButton } from '../../components/custom-button/custom-button';
+import { CustomButtonOrders } from '../../components/custom-button-orders/custom-button-orders';
 
 @Component({
-  selector: 'app-home',
-  imports: [CustomButton],
-  templateUrl: './home.html',
-  styleUrl: './home.css'
+  selector: 'app-waiter-screen',
+  imports: [CustomButtonOrders],
+  templateUrl: './waiter-screen.html',
+  styleUrl: './waiter-screen.css'
 })
-export class Home {
+export class WaiterScreen {
 
   toast = inject(ToastManager);
   authService = inject(Auth);
@@ -40,13 +40,5 @@ export class Home {
 
   public toggleMenu() {
     this.menuOpen = !this.menuOpen;
-  }
-
-  navigateToDrinks(){
-    this.router.navigateByUrl('/menu/drinks')
-  }
-
-  navigateToFoods(){
-    this.router.navigateByUrl('/menu/foods')
   }
 }
