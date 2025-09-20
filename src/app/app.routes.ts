@@ -24,8 +24,15 @@ export const routes: Routes = [
         children: [
             { path: "homeowner", loadComponent: () => import('./pages/owner/home-owner/home-owner').then(m => m.HomeOwner) },
             { path: "employeeform", loadComponent: () => import('./pages/owner/employee-form/employee-form').then(m => m.EmployeeForm) }
-        ]
+         ]
     },
+  {
+    path: "chef",
+        children: [
+            { path: 'formfoods', loadComponent: () => import('./pages/chef/form-foods/form-foods').then(m => m.FormFoods)},
+            { path: 'formdrinks', loadComponent: () => import('./pages/chef/form-drinks/form-drinks').then(m => m.FormDrinks) }
+          ]
+  },
     {path: "waiterscreen", loadComponent: () => import('./pages/waiter-screen/waiter-screen').then(m => m.WaiterScreen)}
 
 ];
