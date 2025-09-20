@@ -69,6 +69,27 @@ export class Auth {
     return { data, error };
   }
 
+  public async anonSignUp({ name, image }: { name: string; image?: File | null }) {
+    const { data, error } = await this.supabase.auth.signInAnonymously({
+      options: {
+        data: {
+          first_name: name,
+          is_anonymous: true,
+        },
+      },
+    });
+
+    if (error) throw error;
+    const user = data.user;
+    if (!user) throw new Error('No se pudo crear el usuario anónimo');
+
+    if (image) {
+      await this.upsertAnonUserPhoto(image);
+    }
+
+    return { data, error: null } as const;
+  }
+
   public async upsertUserPhoto(file: File): Promise<{ path: string; publicUrl?: string | null }> {
     let user = this.currentUser.value;
     if (!user) {
@@ -77,6 +98,11 @@ export class Auth {
         throw error ?? new Error('No authenticated user');
       }
       user = data.user;
+    }
+
+    // If the current user is anonymous, delegate to the anon-specific flow
+    if (this.isAnonymous(user)) {
+      return this.upsertAnonUserPhoto(file);
     }
 
     const { data: profile, error: profileError } = await this.supabase
@@ -110,6 +136,44 @@ export class Auth {
 
   public getUserPhoto({ path }: { path: string }): string | null {
     const { data } = this.supabase.storage.from('koda-avatars').getPublicUrl(path);
+    return data.publicUrl;
+  }
+
+  // Helpers for anonymous users
+  private isAnonymous(user: User | null): boolean {
+    if (!user) return false;
+    const providerAnon = Array.isArray((user as any).identities)
+      ? (user as any).identities.some((i: any) => i?.provider === 'anonymous')
+      : false;
+    const metadataAnon = (user.user_metadata as any)?.is_anonymous === true;
+    return providerAnon || metadataAnon;
+  }
+
+  public async upsertAnonUserPhoto(file: File): Promise<{ path: string; publicUrl?: string | null }> {
+    const { data: userResp, error: userErr } = await this.supabase.auth.getUser();
+    if (userErr) throw userErr;
+    const user = userResp.user;
+    if (!user) throw new Error('No authenticated user');
+
+    const nameParts = file.name?.split('.') ?? [];
+    const ext = nameParts.length > 1 ? nameParts[nameParts.length - 1] : 'jpg';
+    const path = `${user.id}/avatar.${ext}`;
+
+    const { data } = await this.supabase.storage
+      .from('koda-avatars-anon')
+      .upload(path, file, { upsert: true });
+    if (!data) {
+      throw new Error('Error al subir la foto (anon)');
+    }
+
+    const { error } = await this.supabase.auth.updateUser({ data: { avatar_path: path } });
+    if (error) throw error;
+
+    return data;
+  }
+
+  public getAnonUserPhoto({ path }: { path: string }): string | null {
+    const { data } = this.supabase.storage.from('koda-avatars-anon').getPublicUrl(path);
     return data.publicUrl;
   }
 

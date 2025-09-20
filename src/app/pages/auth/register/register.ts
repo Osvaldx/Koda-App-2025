@@ -55,14 +55,13 @@ export class Register {
           const identification = control.value;
           if (control.value.length === 8) {
             return validateDni(identification);
-          }
-          else if (control.value.length === 11) {
+          } else if (control.value.length === 11) {
             return validateCuil(identification);
           } else {
             return { invalidIdentification: true };
           }
           return null;
-        }
+        },
       ]),
       email: new FormControl('', [
         Validators.required,
@@ -92,7 +91,7 @@ export class Register {
 
   public async register() {
     console.log(this.imageData);
-    this.registerForm.disable()
+    this.registerForm.disable();
     const { email, password, name, lastName, identification } = this.registerForm.value;
     if (
       email?.trim() === '' ||
@@ -136,14 +135,17 @@ export class Register {
       } else {
         this.toastManager.show('error', 'Error inesperado. Por favor intenta de nuevo.', 3000);
       }
-
     } finally {
-      this.registerForm.enable()
+      this.registerForm.enable();
     }
   }
 
   public navigateToLogin() {
     this.router.navigate(['/auth/login']);
+  }
+
+  protected navigateToGuest() {
+    this.router.navigate(['/auth/guest']);
   }
 
   protected getInputError(controlName: string) {
