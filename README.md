@@ -42,7 +42,7 @@
   - App lista para abrir en **Android Studio**.
 
 - 🧹 **Limpieza**
-  - Se eliminó un atributo no utilizado.
+  - Se eliminó un atributo no utilizado
 
 ### Actualizado — Sep 16, 2025
 
@@ -54,6 +54,23 @@
 
 - 📋 **Menú & Datos de usuario**
   - Lógica del menú y binding de datos del usuario. (`1e10382`)
+ 
+### Actualizado — Sep 20, 2025
+
+- 🍹 **Form Bartender (Bebidas)**
+  - Se **registró la ruta** del formulario de bartender. (`a8b1c7a`)
+  - **Estructura HTML** del form con **validaciones** y control. (`cc59436`)
+
+- 🧹 **UX / Forms**
+  - Se quitó `autocomplete` innecesario. (`e6959a1`)
+
+- 🎨 **Estilos**
+  - Se agregó una **clase CSS** para el “back”/fondo. (`55814ae`)
+
+- 🔀 **Integración**
+  - Merge `main` → `Nahuel/formBartender`. (`fee0730`)
+  - PR mergeado a `main` por @StefaniaAyelen. (`3c9c3bd`)
+
 ---
 
 ## Stefania Bianchi _(StefaniaAyelen)_
@@ -77,7 +94,32 @@
   - Lógica del acceso directo. (`5d8741b`)
   - Agregado de la cuenta rápida. (`7a9b875`)
   - Agregado de cuentas. (`b68b41d`)
+  - 
+### Actualizado — Sep 20, 2025
 
+- 🧭 **Navegación & Páginas (Bebidas/Comidas)**
+  - Página de **Bebidas** (diseño inicial). (`55012ba`)
+  - Cerrar sesión + navigate hacia **Comidas**. (`820a19b`)
+  - Se agregó navegación hacia **Bebidas** y **Comidas**. (`67959e4`)
+  - Nuevos métodos `navigate`. (`6199fd5`, `5597f5d`)
+  - Se añadió navegación faltante hacia **Bebidas** desde **Comidas**. (`ded17b9`)
+  - Ajustes de UI: **diseño responsive** y header más grande. (`9d36c56`, `8251096`)
+  - Mejora: **diseño responsive de la card**. (`4d37c16`)
+
+- 👩‍🍳 **Pantalla del Chef & Formularios**
+  - Rutas del **chef**. (`51ae8e2`)
+  - Nuevo **input custom** para la pantalla del chef. (`d6a3e99`)
+  - Nuevo **form de comidas**. (`21862f1`)
+  - Normalización: rutas a **minúscula**. (`e6204c9`)
+  - Refactor: se eliminó `custom-input-chef` y se aplicó/importe `custom-input`. (`aa67fdd`, `6e896a9`, `2025015`)
+
+- 🧑‍💼 **Owner & Empleados**
+  - Integración de rutas del **owner**. (`5b5d806`)
+  - Implementación del **form para cargar empleado**. (`782fff6`)
+
+- 🔀 **Integración**
+  - Merges de ramas de trabajo a `main`. (`8319046`, `b2d7ad3`, `a2ede3e`, `fcd9865`)
+  - PRs fusionados por el colaborador: (`aefded5`, `91a3f74`, `114e029`, `bb29316`)
 ---
 
 ## Federico Deniard
@@ -115,5 +157,14 @@
 - ✅ **Registro & Validaciones**
   - Fix: Se arreglaron las validaciones del formulario de registro. (`e17dcdd`)
   - Fix: Validación del dominio del correo electrónico. (`1886f54`)
+
+### Actualizado — Sep 20, 2025
+
+- 🔐 **Autenticación (Invitado)**
+  - Feature: Implementé el **login anónimo / guest**. (`43149fc`)
+
+- 🔀 **Integración**
+  - Merge `main` → `federico/guest-login`. (`1fe72ab`)
+  - PR fusionado a `main`. (`a925fff`)
 
 ---
