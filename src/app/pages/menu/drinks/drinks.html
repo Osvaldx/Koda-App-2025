@@ -1,1 +1,86 @@
-<p>drinks works!</p>
+<main class="relative min-h-screen bg-red-100 flex flex-col">
+    <!-- Header -->
+    <header
+        class="flex justify-center items-center px-4 py-5 bg-gradient-to-r from-red-800 to-red-700 text-white shadow-md relative">
+        <!-- Botón hamburguesa -->
+        <button (click)="toggleMenu()" class="flex flex-col gap-1 focus:outline-none p-1 absolute left-3 sm:left-4">
+            <span class="block w-5 h-0.5 sm:w-6 sm:h-0.5 bg-white"></span>
+            <span class="block w-5 h-0.5 sm:w-6 sm:h-0.5 bg-white"></span>
+            <span class="block w-5 h-0.5 sm:w-6 sm:h-0.5 bg-white"></span>
+        </button>
+
+        <!-- Logo / título -->
+        <h1 class="text-base sm:text-lg font-bold">Bebidas</h1>
+
+        <!-- Avatar -->
+        <div class="w-8 h-8 sm:w-10 sm:h-10 rounded-full overflow-hidden border-2 border-white absolute right-3 sm:right-4">
+            <img src="https://i.pravatar.cc/100" alt="User" class="w-full h-full object-cover">
+        </div>
+    </header>
+
+    <!-- Menu lateral -->
+    <aside [class.translate-x-0]="menuOpen" [class.-translate-x-full]="!menuOpen"
+        class="fixed top-0 left-0 w-72 sm:w-64 h-full bg-white shadow-lg transform transition-transform duration-300 z-50 flex flex-col justify-between">
+        <div>
+            <div class="p-5 bg-red-800 flex flex-col gap-2">
+                <h2 class="text-xl font-semibold text-white text-center uppercase">Menú de opciones</h2>
+                <p class="text-center border border-gray-500 rounded-2xl bg-white p-1">{{userEmail}}</p>
+            </div>
+            <nav class="flex flex-col p-5 space-y-4 text-gray-700">
+                <app-custom-button type="secondary" label="🍔 Comidas" (click)="navigateToFoods()" customStyle="w-full py-2"></app-custom-button>
+                <app-custom-button type="secondary" label="🥤 Bebidas ●" customStyle="w-full py-2">🥤 Bebidas</app-custom-button>
+            </nav>
+        </div>
+        <div class="text-center">
+            <button class="text-center px-3 py-2 text-white font-bold rounded hover:bg-red-100 bg-red-800 mb-10"
+                (click)="sessionClose()">Cerrar sesión</button>
+        </div>
+    </aside>
+
+    <!-- Menu abierto -->
+    @if (menuOpen) {
+    <div (click)="toggleMenu()" class="fixed inset-0 bg-black/40 z-40"></div>
+    }
+
+    <!-- Contenido principal -->
+    <section class="flex flex-col items-center p-6 sm:p-8 gap-4">
+        <input class="border border-black p-3 w-full px-4 text-base" type="text" placeholder="Buscar bebida...">
+        <div class="flex gap-2 flex-wrap justify-center">
+            <app-custom-button type="primary" label="Todo" customStyle="w-fit px-3 py-2 text-sm"></app-custom-button>
+            <app-custom-button type="primary" label="Gaseosas" customStyle="w-fit px-3 py-2 text-sm"></app-custom-button>
+            <app-custom-button type="primary" label="Jugos" customStyle="w-fit px-3 py-2 text-sm"></app-custom-button>
+            <app-custom-button type="primary" label="Cócteles" customStyle="w-fit px-3 py-2 text-sm"></app-custom-button>
+            <app-custom-button type="primary" label="Cervezas" customStyle="w-fit px-3 py-2 text-sm"></app-custom-button>
+        </div>
+    </section>
+    <section class="flex flex-wrap justify-center gap-4 p-6 sm:p-8">
+        <app-product-card
+        title="Coca-Cola"
+        description="Refresco gaseoso clásico"
+        urlImg="https://atencion24.ar/wp-content/uploads/2024/11/coca-cola-lata-54-scaled.jpg"
+        ></app-product-card>
+
+        <app-product-card
+        title="Jugo de Naranja"
+        description="Jugo natural exprimido"
+        urlImg="https://media.vogue.mx/photos/5ecbbb4df863d188d6f3185c/master/w_1600%2Cc_limit/jugo-de-naranja--naranja.jpg"
+        ></app-product-card>
+
+        <app-product-card
+        title="Mojito"
+        description="Cóctel con ron, menta y limón"
+        urlImg="https://images.immediate.co.uk/production/volatile/sites/30/2020/08/mojito-cocktails-150961e.jpg"
+        ></app-product-card>
+
+        <app-product-card
+        title="Cerveza Artesanal"
+        description="Rubia refrescante"
+        urlImg="https://gpsbirra.com/wp-content/uploads/2022/09/img_20220509_171805955_portrait.jpg?w=1400"
+        ></app-product-card>
+    </section>
+    <button class="fixed right-3 sm:right-5 bottom-3 sm:bottom-4 border border-red-600 bg-white text-red-600 w-fit p-3 sm:p-4 lg:p-5 rounded-full shadow-lg hover:shadow-xl transition-shadow z-30">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5 sm:w-6 sm:h-6">
+            <path d="M2.25 2.25a.75.75 0 0 0 0 1.5h1.386c.17 0 .318.114.362.278l2.558 9.592a3.752 3.752 0 0 0-2.806 3.63c0 .414.336.75.75.75h15.75a.75.75 0 0 0 0-1.5H5.378A2.25 2.25 0 0 1 7.5 15h11.218a.75.75 0 0 0 .674-.421 60.358 60.358 0 0 0 2.96-7.228.75.75 0 0 0-.525-.965A60.864 60.864 0 0 0 5.68 4.509l-.232-.867A1.875 1.875 0 0 0 3.636 2.25H2.25ZM3.75 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0ZM16.5 20.25a1.5 1.5 0 1 1 3 0 1.5 1.5 0 0 1-3 0Z" />
+        </svg>
+    </button>
+</main>

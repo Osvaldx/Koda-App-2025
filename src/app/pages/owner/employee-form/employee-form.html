@@ -1,0 +1,105 @@
+<main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
+    <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
+    </div>
+    <form [formGroup]="registerEmployeeForm" class="relative z-9 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
+        <div class="text-center">
+            <h1 class="text-2xl font-bold text-red-500">Registrar Empleado</h1>
+            <p>Completa el formulario para registrar un empleado</p>
+        </div>
+        <div class="flex justify-center items-center flex-col gap-2">
+            <!-- Nombre -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.nombre" 
+                type="text" 
+                autocomplete="given-name" 
+                placeholder="Nombre">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.nombre.errors && registerEmployeeForm.controls.nombre.touched) {
+                <div class="text-sm text-red-500">
+                        <p>{{getInputError('nombre')}}</p>
+                </div>
+            }
+
+            <!-- Apellido -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.lastName" 
+                type="text" 
+                autocomplete="family-name" 
+                placeholder="Apellido">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.lastName.errors && registerEmployeeForm.controls.lastName.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('lastName')}}</p>
+                </div>
+            }
+
+            <!-- DNI/CUIL -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.identification" 
+                type="number" 
+                inputmode="numeric"
+                placeholder="DNI/CUIL">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.identification.errors && registerEmployeeForm.controls.identification.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('identification')}}</p>
+                </div>
+            }
+
+            <!-- Email -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.email" 
+                type="email" 
+                autocomplete="email" 
+                placeholder="Email">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.email.errors && registerEmployeeForm.controls.email.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('email')}}</p>
+                </div>
+            }
+
+            <!-- Contraseña -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.password" 
+                type="password" 
+                autocomplete="new-password" 
+                placeholder="Contraseña">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.password.errors && registerEmployeeForm.controls.password.touched) {
+                <div class="text-sm text-red-500">
+                    <p>{{getInputError('password')}}</p>
+                </div>
+            }
+
+            <!-- Perfil -->
+            <app-custom-input 
+                [controller]="registerEmployeeForm.controls.profile" 
+                type="text" 
+                placeholder="Perfil del empleado...">
+            </app-custom-input>
+            @if (registerEmployeeForm.controls.profile.errors && registerEmployeeForm.controls.profile.touched) {
+                <div class="text-sm text-red-500">
+                    <p>[!] El perfil es requerido</p>
+                </div>
+            }
+
+            <div class="w-80 space-y-2 mx-auto">
+                <div class="flex flex-col">
+                    <div class="flex justify-center items-center gap-2 mb-1">
+                        <span class="text-sm font-medium text-gray-700">Toma la foto</span>
+                    </div>
+                <app-image-upload 
+                    [hideText]="true" 
+                    (imageDataChange)="onImageDataChange($event)">
+                </app-image-upload>
+                </div>
+            </div>
+        </div>
+        
+        <button type="button" (click)="registerEmployee()" class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2">
+            Registrar Empleado
+        </button>
+    </form>
+
+</main>

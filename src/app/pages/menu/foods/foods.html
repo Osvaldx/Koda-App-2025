@@ -28,8 +28,8 @@
             </div>
             <nav class="flex flex-col p-5 space-y-4 text-gray-700">
                 <!-- Cambiar por el boton custom -->
-                <button class="text-center px-3 py-2 rounded hover:bg-red-100 border border-red-500">🍔 Comidas</button>
-                <button class="text-center px-3 py-2 rounded hover:bg-red-100 border border-red-500">🥤 Bebidas</button>
+                <app-custom-button type="secondary" label="🍔 Comidas ●" customStyle="w-full py-2"></app-custom-button>
+                <app-custom-button type="secondary" label="🥤 Bebidas" (click)="navigateToDrinks()" customStyle="w-full py-2">🥤 Bebidas</app-custom-button>
             </nav>
         </div>
         <div class="text-center">

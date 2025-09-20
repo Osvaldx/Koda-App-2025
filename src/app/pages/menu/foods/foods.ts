@@ -43,4 +43,8 @@ export class Foods {
     this.menuOpen = !this.menuOpen;
   }
 
+  navigateToDrinks(){
+    this.router.navigateByUrl('/menu/drinks')
+  }
+
 }
