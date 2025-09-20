@@ -1,7 +1,7 @@
 <main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
     <div class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve">
     </div>
-    <form [formGroup]="registerEmployeeForm" class="relative z-10 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
+    <form [formGroup]="registerEmployeeForm" class="relative z-9 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl">
         <div class="text-center">
             <h1 class="text-2xl font-bold text-red-500">Registrar Empleado</h1>
             <p>Completa el formulario para registrar un empleado</p>
@@ -9,14 +9,14 @@
         <div class="flex justify-center items-center flex-col gap-2">
             <!-- Nombre -->
             <app-custom-input 
-                [controller]="registerEmployeeForm.controls.name" 
+                [controller]="registerEmployeeForm.controls.nombre" 
                 type="text" 
                 autocomplete="given-name" 
                 placeholder="Nombre">
             </app-custom-input>
-            @if (registerEmployeeForm.controls.name.errors && registerEmployeeForm.controls.name.touched) {
+            @if (registerEmployeeForm.controls.nombre.errors && registerEmployeeForm.controls.nombre.touched) {
                 <div class="text-sm text-red-500">
-                        <p>[!] El nombre es requerido</p>
+                        <p>{{getInputError('nombre')}}</p>
                 </div>
             }
 
@@ -29,7 +29,7 @@
             </app-custom-input>
             @if (registerEmployeeForm.controls.lastName.errors && registerEmployeeForm.controls.lastName.touched) {
                 <div class="text-sm text-red-500">
-                    <p>[!] El Apellido es requerido</p>
+                    <p>{{getInputError('lastName')}}</p>
                 </div>
             }
 
@@ -42,7 +42,7 @@
             </app-custom-input>
             @if (registerEmployeeForm.controls.identification.errors && registerEmployeeForm.controls.identification.touched) {
                 <div class="text-sm text-red-500">
-                    <p>[!] El DNI/CUIL es requerido</p>
+                    <p>{{getInputError('identification')}}</p>
                 </div>
             }
 
@@ -55,7 +55,7 @@
             </app-custom-input>
             @if (registerEmployeeForm.controls.email.errors && registerEmployeeForm.controls.email.touched) {
                 <div class="text-sm text-red-500">
-                    <p>[!] El Email es requerido</p>
+                    <p>{{getInputError('email')}}</p>
                 </div>
             }
 
@@ -68,7 +68,7 @@
             </app-custom-input>
             @if (registerEmployeeForm.controls.password.errors && registerEmployeeForm.controls.password.touched) {
                 <div class="text-sm text-red-500">
-                    <p>[!] La contraseña es requerida</p>
+                    <p>{{getInputError('password')}}</p>
                 </div>
             }
 
@@ -78,7 +78,7 @@
                 type="text" 
                 placeholder="Perfil del empleado...">
             </app-custom-input>
-            @if (registerEmployeeForm.controls.password.errors && registerEmployeeForm.controls.password.touched) {
+            @if (registerEmployeeForm.controls.profile.errors && registerEmployeeForm.controls.profile.touched) {
                 <div class="text-sm text-red-500">
                     <p>[!] El perfil es requerido</p>
                 </div>

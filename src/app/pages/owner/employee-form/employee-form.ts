@@ -4,6 +4,7 @@ import { FormGroup, FormControl, AbstractControl, ReactiveFormsModule, Validator
 import { validateCuil, validateDni } from '../../../utils/validations';
 import { ToastManager } from '../../../services/toast-manager';
 import { ImageUploadComponent, ImageUploadData } from '../../../components/attachments/picture/picture';
+import { getFormError } from '../../../utils/utils';
 
 @Component({
   selector: 'app-employee-form',
@@ -16,7 +17,7 @@ export class EmployeeForm {
   toast = inject(ToastManager)
 
   public registerEmployeeForm = new FormGroup({
-    name: new FormControl('', [Validators.required]),
+    nombre: new FormControl('', [Validators.required]),
     lastName: new FormControl('', [Validators.required]),
     identification: new FormControl('', [
         Validators.required,
@@ -57,7 +58,7 @@ export class EmployeeForm {
 
   hasNotSpaces(){
     return (
-      this.registerEmployeeForm.controls.name.value?.trim() == '' ||
+      this.registerEmployeeForm.controls.nombre.value?.trim() == '' ||
       this.registerEmployeeForm.controls.lastName.value?.trim() == '' || 
       this.registerEmployeeForm.controls.identification.value?.trim() == '' ||
       this.registerEmployeeForm.controls.email.value?.trim() == '' ||
@@ -102,6 +103,10 @@ export class EmployeeForm {
   imageData: ImageUploadData | null = null;
   protected onImageDataChange(data: ImageUploadData | null) {
     this.imageData = data;
+  }
+
+  protected getInputError(controlName: string) {
+    return getFormError(this.registerEmployeeForm, controlName);
   }
 
 
