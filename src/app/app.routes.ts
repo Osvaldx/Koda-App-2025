@@ -20,6 +20,12 @@ export const routes: Routes = [
         ]
     },
     {
+        path: "bartender",
+        children: [
+            { path: "form-drinks", loadComponent: () => import('./pages/bartender/form-drinks/form-drinks').then(m => m.FormDrinks) }
+        ]
+    },
+    {
         path: "owner",
         children: [
             { path: "homeowner", loadComponent: () => import('./pages/owner/home-owner/home-owner').then(m => m.HomeOwner) },
@@ -34,5 +40,4 @@ export const routes: Routes = [
           ]
   },
     {path: "waiterscreen", loadComponent: () => import('./pages/waiter-screen/waiter-screen').then(m => m.WaiterScreen)}
-
 ];

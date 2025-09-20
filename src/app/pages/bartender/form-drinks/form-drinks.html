@@ -1,0 +1,96 @@
+<main class="relative min-h-screen bg-red-100 flex flex-col justify-center items-center">
+  <div
+    class="absolute top-0 left-0 w-full h-[40vh] bg-gradient-to-r from-red-800 to-red-700 clip-curve"
+  ></div>
+
+  <form
+    [formGroup]="drinkForm"
+    class="relative z-9 flex justify-center items-center flex-col gap-6 p-5 rounded-2xl bg-white shadow-xl"
+  >
+    <div class="text-center">
+      <h1 class="text-2xl font-bold text-red-500">Crear bebida</h1>
+      <p>Completa el formulario para registrar una bebida</p>
+    </div>
+
+    <div class="flex justify-center items-center flex-col gap-2">
+      <!-- Nombre -->
+      <app-custom-input
+        [controller]="this.drinkForm.controls.name"
+        type="text"
+        placeholder="Nombre de la bebida"
+      >
+      </app-custom-input>
+      @if (this.drinkForm.controls.name.errors && this.drinkForm.controls.name.touched) {
+      <div class="text-sm text-red-500">
+        <p>[!] El nombre es requerido</p>
+      </div>
+      }
+
+      <!-- Descripción -->
+      <app-custom-input
+        [controller]="this.drinkForm.controls.description"
+        type="text"
+        placeholder="Descripción de la bebida"
+      >
+      </app-custom-input>
+      @if (this.drinkForm.controls.description.errors &&
+      this.drinkForm.controls.description.touched) {
+      <div class="text-sm text-red-500">
+        <p>[!] La descripción es requerida</p>
+      </div>
+      }
+
+      <!-- Tiempo de elaboración -->
+      <app-custom-input
+        [controller]="this.drinkForm.controls.time"
+        type="number"
+        placeholder="Tiempo de elaboración (min)"
+      >
+      </app-custom-input>
+      @if (this.drinkForm.controls.time.errors && this.drinkForm.controls.time.touched) {
+      <div class="text-sm text-red-500">
+        <p>[!] El tiempo es requerido y debe ser mayor a 0</p>
+      </div>
+      }
+
+      <!-- Precio -->
+      <app-custom-input
+        [controller]="this.drinkForm.controls.price"
+        type="number"
+        placeholder="Precio"
+      >
+      </app-custom-input>
+      @if (this.drinkForm.controls.price.errors && this.drinkForm.controls.price.touched) {
+      <div class="text-sm text-red-500">
+        <p>[!] El precio es requerido y debe ser mayor a 0</p>
+      </div>
+      }
+    </div>
+
+    <!-- Fotos -->
+    <div class="w-80 space-y-2 mx-auto">
+      <div class="flex flex-col">
+        <div class="flex justify-center items-center gap-2 mb-1">
+          <span class="text-sm font-medium text-gray-700">Fotos de la bebida</span>
+        </div>
+        <div class="flex flex-col gap-3">
+          <app-image-upload [hideText]="true" (imageDataChange)="onImageDataChange($event, 0)">
+          </app-image-upload>
+          <app-image-upload [hideText]="true" (imageDataChange)="onImageDataChange($event, 1)">
+          </app-image-upload>
+          <app-image-upload [hideText]="true" (imageDataChange)="onImageDataChange($event, 2)">
+          </app-image-upload>
+        </div>
+      </div>
+    </div>
+
+    <!-- Botón -->
+    <button
+      type="button"
+      (click)="registerDrink()"
+      class="bg-red-500 text-white rounded-2xl w-80 p-2 mt-2"
+    >
+      Registrar Bebida
+    </button>
+  </form>
+</main>
